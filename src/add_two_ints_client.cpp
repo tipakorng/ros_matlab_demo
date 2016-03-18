@@ -3,7 +3,7 @@
 //
 
 #include "ros/ros.h"
-#include "matlab_example/AddTwoInts.h"
+#include "matlab_demo/AddTwoInts.h"
 #include <cstdlib>
 
 int main(int argc, char **argv)
@@ -16,8 +16,8 @@ int main(int argc, char **argv)
   }
 
   ros::NodeHandle n;
-  ros::ServiceClient client = n.serviceClient<matlab_example::AddTwoInts>("add_two_ints");
-  matlab_example::AddTwoInts srv;
+  ros::ServiceClient client = n.serviceClient<matlab_demo::AddTwoInts>("add_two_ints");
+  matlab_demo::AddTwoInts srv;
   srv.request.a = atoll(argv[1]);
   srv.request.b = atoll(argv[2]);
   if (client.call(srv))

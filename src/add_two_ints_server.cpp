@@ -3,13 +3,13 @@
 //
 
 #include "ros/ros.h"
-#include "matlab_example/AddTwoInts.h"
+#include "matlab_demo/AddTwoInts.h"
 #include "engine.h"
 
 engine *ep_;
 
-bool add(matlab_example::AddTwoInts::Request  &req,
-         matlab_example::AddTwoInts::Response &res)
+bool add(matlab_demo::AddTwoInts::Request  &req,
+         matlab_demo::AddTwoInts::Response &res)
 {
     mxArray *a = mxCreateDoubleMatrix(1, 1 , mxREAL);
     mxArray *b = mxCreateDoubleMatrix(1, 1 , mxREAL);
@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
 
     ep_ = engOpen("\0");
-    engEvalString(ep_, "cd ~/catkin_ws/src/matlab_example/matlab");  // TODO: Make this automatic
+    engEvalString(ep_, "cd ~/catkin_ws/src/matlab_demo/matlab");  // TODO: Make this automatic
 
     ros::ServiceServer service = n.advertiseService("add_two_ints", add);
     ROS_INFO("Ready to add two ints.");

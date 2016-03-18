@@ -1,0 +1,7 @@
+# A request consists of vectors a and b.
+# The response is the dot product of the two vectors.
+
+float64[] a
+float64[] b
+---
+float64 x

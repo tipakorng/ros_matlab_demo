@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>matlab_example</name>
+  <name>matlab_demo</name>
   <version>0.0.0</version>
-  <description>The matlab_example package</description>
+  <description>The matlab_demo package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
