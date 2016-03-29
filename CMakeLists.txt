@@ -1,15 +1,12 @@
 # %Tag(FULLTEXT)%
 cmake_minimum_required(VERSION 2.8.3)
-#cmake_minimum_required(VERSION 3.3)
 project(matlab_demo)
 
 # Configure CMake
-message(STATUS ${CMAKE_SOURCE_DIR})
-#set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/matlab_demo/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs message_generation)
+find_package(catkin REQUIRED COMPONENTS roscpp roslib rospy std_msgs message_generation)
 find_package(MATLAB REQUIRED)
 
 ## If Matlab is not found, raise error and quit
@@ -29,17 +26,15 @@ generate_messages(DEPENDENCIES std_msgs)
 catkin_package()
 
 # %EndTag(FULLTEXT)%
-#include_directories(${catkin_INCLUDE_DIRS} ${MATLAB_INCLUDE_DIR})
 include_directories(${catkin_INCLUDE_DIRS} ${Matlab_INCLUDE_DIRS})
 
+# Add executables
 add_executable(add_two_ints_server src/add_two_ints_server.cpp)
 target_link_libraries(add_two_ints_server ${catkin_LIBRARIES} ${MATLAB_LIBRARIES})
-#target_link_libraries(add_two_ints_server ${catkin_LIBRARIES} ${Matlab_ENG_LIBRARY} ${Matlab_MX_LIBRARY})
 add_dependencies(add_two_ints_server matlab_demo_gencpp)
 
 add_executable(add_two_ints_client src/add_two_ints_client.cpp)
 target_link_libraries(add_two_ints_client ${catkin_LIBRARIES} ${MATLAB_LIBRARIES})
-#target_link_libraries(add_two_ints_client ${catkin_LIBRARIES} ${Matlab_ENG_LIBRARY} ${Matlab_MX_LIBRARY})
 add_dependencies(add_two_ints_client matlab_demo_gencpp)
 
 add_executable(dot_product_server src/dot_product_server.cpp)

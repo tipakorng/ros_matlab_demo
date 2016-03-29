@@ -3,6 +3,7 @@
 //
 
 #include "ros/ros.h"
+#include "ros/package.h"
 #include "matlab_demo/DotProduct.h"
 #include "engine.h"
 
@@ -39,7 +40,8 @@ int main(int argc, char **argv) {
 
     // Start Matlab engine
     ep_ = engOpen("\0");
-    engEvalString(ep_, "cd ~/catkin_ws/src/matlab_demo/matlab");
+    std::string changeDir = "cd " + ros::package::getPath("matlab_demo") + "/matlab";
+    engEvalString(ep_, changeDir.c_str());
 
     // Advertise service
     ros::ServiceServer service = nh.advertiseService("dot_product", dotProduct);
